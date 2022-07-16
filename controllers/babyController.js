@@ -5,7 +5,7 @@ const router = express.Router()
 
 //display all babies
 
-router.get('/baby', (req,res) => {
+router.get('/', (req,res) => {
     Baby.find({}).then((data)=>
     res.json(data)
     )
@@ -14,15 +14,26 @@ router.get('/baby', (req,res) => {
 // Create a baby
 router.post('/', (req,res)=> {
     console.log(req.body)
-    Baby.create(req.body).then(() => res.redirect('/'))  
+    Baby.create(req.body).then(() => res.redirect('/baby'))  
     
 })
 
 // Update a baby 
-router.put('/:id', async (req,res)=> {
-    res.json(await Baby.findByIdAndUpdate(req.params.id, req.body))
+router.get('/:id', (req,res) => {
+    Baby.findById(req.params.id).then((data)=>
+    res.json(data)
+    )
+});
+
+router.put('/:id',  (req,res)=> {
+    Baby.findByIdAndUpdate(req.params.id, req.body, {new: true}, (error, baby)=> {
+    res.redirect('/baby') 
+    })
      
 })
+
+
+
 
 // Delete a baby
 router.delete('/:id', async (req, res)=>{
