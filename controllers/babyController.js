@@ -1,7 +1,12 @@
+const { Router } = require('express');
 const express = require ('express')
 const Baby = require('../models/babyModels')
 
 const router = express.Router()
+
+router.get('/favicon.ico', (req,res) =>{
+    console.log('favicon')
+})
 
 //display all babies
 

@@ -3,6 +3,10 @@ const Checklist = require('../models/checklistModels')
 
 const router = express.Router()
 
+router.get('/favicon.ico', (req,res) =>{
+    console.log('favicon')
+})
+
 //display all checklist items
 
 router.get('/', (req,res) => {
