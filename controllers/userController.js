@@ -3,7 +3,7 @@ const User = require('../models/userModels')
 
 const router = express.Router()
 
-//display all babies
+//display all users
 
 router.get('/', (req,res) => {
     User.find({}).then((data)=>
